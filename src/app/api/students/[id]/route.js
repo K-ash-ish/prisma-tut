@@ -7,5 +7,15 @@ export async function GET(res, { params }) {
       id: { equals: id },
     },
   });
+  //  const { searchParams } = new URL(req.url);
+  // const teacherId = Number(searchParams.get("teacherId"));
+  // const student = await prisma.student.findFirstOrThrow({
+  //   where: {
+  //     OR: [
+  //       { id: { equals: Number(id) } },
+  //       { teacherId: { equals: teacherId } },
+  //     ],
+  //   },
+  // });
   return NextResponse.json(student);
 }

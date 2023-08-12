@@ -11,8 +11,18 @@ const studentSchema = z.object({
   teacherId: z.number(),
 });
 
-export async function GET() {
-  const students = await prisma.student.findMany();
+export async function GET(req, res) {
+  const { searchParams } = new URL(req.url);
+  const teacherId = Number(searchParams.get("teacherId"));
+  const students = await (teacherId
+    ? prisma.student.findMany({
+        where: {
+          teacherId: {
+            equals: teacherId,
+          },
+        },
+      })
+    : prisma.student.findMany());
   return NextResponse.json(students);
 }
 
@@ -22,11 +32,11 @@ export async function POST(req) {
 
     console.log(student);
 
-    // prisma.student.create({
-    //   data: {},
-    // });
+    await prisma.student.create({
+      data: student,
+    });
 
-    return NextResponse.json([]);
+    return NextResponse.json(student);
   } catch (e) {
     console.error(e);
     return NextResponse.json(
