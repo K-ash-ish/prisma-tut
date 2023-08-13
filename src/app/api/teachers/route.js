@@ -17,10 +17,10 @@ export async function GET() {
 export async function POST(req, res) {
   try {
     const teacher = teacherSchema.parse(await req.json());
-    const teacherRes = await prisma.teacher.create({
+    const newTeacher = await prisma.teacher.create({
       data: teacher,
     });
-    return NextResponse.json(teacherRes);
+    return NextResponse.json(newTeacher);
   } catch (error) {
     console.log(error);
     return NextResponse.json(

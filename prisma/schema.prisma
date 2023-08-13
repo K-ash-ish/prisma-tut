@@ -22,7 +22,7 @@ model Student {
   age Int
   gender Gender
   email String @unique
-   teacherId Int @map("teacher_id")
+  teacherId Int @map("teacher_id")
   teacher Teacher @relation(fields: [teacherId], references: [id])
 }
 enum Gender{
@@ -38,5 +38,4 @@ model Teacher {
   gender Gender
   email String @unique
   students Student[]
-  
 }

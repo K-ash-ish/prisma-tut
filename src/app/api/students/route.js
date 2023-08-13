@@ -32,11 +32,11 @@ export async function POST(req) {
 
     console.log(student);
 
-    await prisma.student.create({
+    const newStudent = await prisma.student.create({
       data: student,
     });
 
-    return NextResponse.json(student);
+    return NextResponse.json(newStudent);
   } catch (e) {
     console.error(e);
     return NextResponse.json(
