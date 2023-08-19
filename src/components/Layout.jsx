@@ -9,7 +9,7 @@ function Layout({ children }) {
           School DB
         </Link>
       </nav>
-      <main className="w-full flex justify-center">{children}</main>
+      <main className="w-full flex flex-col items-center">{children}</main>
     </>
   );
 }
