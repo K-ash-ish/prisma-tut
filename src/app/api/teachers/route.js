@@ -1,7 +1,8 @@
 import { prisma } from "@/db/prisma";
+import { verify } from "@/utils/jwt";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-
 const teacherSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
@@ -11,6 +12,11 @@ const teacherSchema = z.object({
 });
 
 export async function GET() {
+  const token = verify(cookies().get({ name: "token" })?.value);
+  console.log(token);
+  if (!token || token.accessLevel !== "admin") {
+    return NextResponse.json({ error: "Not authorised" }, { status: 401 });
+  }
   const teachers = await prisma.teacher.findMany();
   return NextResponse.json(teachers);
 }
