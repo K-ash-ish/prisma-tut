@@ -63,7 +63,7 @@ function onSubmit(values) {
       password,
     }),
     method: "POST",
-    credentials: "include ",
+    credentials: "include",
   })
     .then((response) => response.json())
     .then((data) => {

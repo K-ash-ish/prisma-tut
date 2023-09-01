@@ -14,6 +14,7 @@ import AddData from "@/components/AddData";
 export const getServerSideProps = async (context) => {
   const res = await fetch("https://prisma-tut.vercel.app/api/teachers");
   const teachers = await res.json();
+  console.log(teachers);
   return {
     props: {
       teachers,
