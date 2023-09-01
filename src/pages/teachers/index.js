@@ -12,7 +12,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import AddData from "@/components/AddData";
 
 export const getServerSideProps = async (context) => {
-  const res = await fetch("https://prisma-tut.vercel.app/api/teachers");
+  const res = await fetch("https://prisma-tut.vercel.app/api/teachers", {
+    credentials: "include",
+  });
   const teachers = await res.json();
   console.log(teachers);
   return {
@@ -50,6 +52,7 @@ function page({ teachers }) {
   //   },
   // ];
   const schema = ["id", "name", "age", "gender", "email"];
+  console.log("teachers ", teachers);
   return (
     <>
       <Head>
