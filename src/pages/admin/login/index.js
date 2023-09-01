@@ -57,7 +57,7 @@ function Login() {
 }
 function onSubmit(values) {
   const { email, password } = values;
-  fetch("http://localhost:3000/api/admin/login", {
+  fetch("https://prisma-tut.vercel.app/api/admin/login", {
     body: JSON.stringify({
       email,
       password,
